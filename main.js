@@ -11,6 +11,12 @@ const client = new Client({
 
 const prefix = '$';
 
+function dec2bin(dec) {
+	return (dec >>> 0).toString(2);
+}
+
+
+
 client.once('ready', () => {
 	console.log('First Bot is Online');
 });
@@ -34,6 +40,42 @@ client.on('interactionCreate', async (interaction) => {
 			content: `The sum is ${num1 + num2}`,
 			ephemeral: true,
 		})
+	} else if (commandName === 'to-binary') {
+		const number = options.getString('number');
+		const base = options.getInteger('base');
+		if (base === null) {
+			interaction.reply({
+				content: `${number} in binary is: ${dec2bin(parseInt(number, 10))}`,
+				ephemeral: true,
+			})
+		} else {
+			interaction.reply({
+				content: `${number} with base ${base} in binary is: ${parseInt(number, base).toString(2)}`,
+				ephemeral: true,
+			})
+		}
+	} else if (commandName === 'to-hex') {
+		const number = options.getString('number');
+		const base = options.getInteger('base');
+		if (base === null) {
+			interaction.reply({
+				content: `${number} in binary is: ${parseInt(number, 10).toString(16)}`,
+				ephemeral: true,
+			})
+		} else {
+			interaction.reply({
+				content: `${number} with base ${base} in hex is: ${parseInt(number, base).toString(16)}`,
+				ephemeral: true,
+			})
+		}
+	} else if (commandName === 'to-decimal') {
+		const number = options.getString('number');
+		const base = options.getInteger('base');
+		interaction.reply({
+			content: `${number} with base ${base} in decimal is: ${parseInt(number, base).toString(10)}`,
+			ephemeral: true,
+		})
+
 	}
 
 });

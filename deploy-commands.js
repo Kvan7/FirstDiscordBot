@@ -20,6 +20,45 @@ const commands = [
 				.setDescription('Second Number')
 				.setRequired(true)
 		),
+	new SlashCommandBuilder()
+		.setName('to-binary')
+		.setDescription('Converts a base ten number to binary(base 2, base 10)')
+		.addStringOption(option =>
+			option.setName('number')
+				.setDescription('Number to convert')
+				.setRequired(true)
+		)
+		.addIntegerOption(option =>
+			option.setName('base')
+				.setDescription('Base of incoming number (Default: 10)')
+				.setRequired(false)
+		),
+	new SlashCommandBuilder()
+		.setName('to-hex')
+		.setDescription('Converts a base ten number to hex(base 16)')
+		.addStringOption(option =>
+			option.setName('number')
+				.setDescription('Number to convert')
+				.setRequired(true)
+		)
+		.addIntegerOption(option =>
+			option.setName('base')
+				.setDescription('Base of incoming number (Default: 10)')
+				.setRequired(false)
+		),
+	new SlashCommandBuilder()
+		.setName('to-decimal')
+		.setDescription('Converts a base 2-36 number to decimal(base 10)')
+		.addStringOption(option =>
+			option.setName('number')
+				.setDescription('Number to convert')
+				.setRequired(true)
+		)
+		.addIntegerOption(option =>
+			option.setName('base')
+				.setDescription('Base of incoming number')
+				.setRequired(true)
+		),
 
 ]
 	.map(command => command.toJSON());
